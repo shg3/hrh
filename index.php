@@ -1,6 +1,7 @@
 <?php
 include 'include/checkLogin.php';
 
+// suguru hashimoto
 // データベースhrh, テーブルpost, データベースユーザーhrhuser
 // id INT NOT NULL,
 // name VARCHAR(255) NOT NULL,
