@@ -1,4 +1,10 @@
 ローカル環境で開発した際のデータベースについてメモします。
+開発はXAMPP(7.2.12)で行いました。
+MySQL Databaseはターミナルで設定し、
+このメモの一番最後に制作時のターミナルのコマンドを残します。
+コピペ利用に活用ください。
+
+--------------------------------------
 
 データベース名：hrh
 
@@ -31,3 +37,39 @@ postnum INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 title VARCHAR(255) NOT NULL,
 maintext TEXT NOT NULL,
 date DATETIME NOT NULL
+
+
+
+------下記ターミナルのコピペになります。------
+
+(1)MySQLの起動とデータベースの作成
+cd /Applications/XAMPP/bin;
+./mysql -u root;
+CREATE DATABASE hrh;
+USE hrh;
+
+(2)テーブルの作成
+CREATE TABLE users(
+id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
+password VARCHAR(255) NOT NULL,
+profile TEXT
+)DEFAULT CHARCTER SET=utf8;
+
+CREATE TABLE post(
+id INT NOT NULL,
+name VARCHAR(255) NOT NULL,
+postnum INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+title VARCHAR(255) NOT NULL,
+maintext TEXT NOT NULL,
+date DATETIME NOT NULL
+)DAFAULT CHARACTER SET=utf8;
+
+(3)ユーザーの追加
+GRANT ALL ON hrh.*to 'hrhuser'@'localhost' IDENTIFIED BY 'password';
+
+(4)登録したユーザーで再ログイン(チェック)
+exit;
+./mysql -u hrhuser -p;
+password;
