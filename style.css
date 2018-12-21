@@ -1,0 +1,490 @@
+@charset "utf-8";
+
+/*共通スタイル
+-------------------*/
+body{
+	margin:0px;
+	padding:0px;
+	background-color:rgb(249,244,237);
+}
+
+body,.wrap{
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+h5,h4,p{
+	color:#444;
+	word-wrap: break-word;
+}
+
+img{
+	border-radius:3px;
+}
+
+
+a{
+	color:rgb(169,31,43);
+	text-decoration:none;
+}
+
+a:hover{
+	opacity: 0.5;
+}
+
+a:active{
+	background-color:rgb(250,250,250);
+}
+
+input{
+	color:#333;
+	border:rgb(169,31,43) 1px solid;
+}
+
+textarea{
+	color:#333;
+	border:rgb(169,31,43) 1px solid;
+}
+
+.container{
+	width:920px;
+	height:100%;
+	min-height:100%;
+	margin:0px auto;
+}
+
+.btns{
+	border:none;
+	width:30px;
+	height:20px;
+	color:rgb(255,255,255);
+	background-color:rgb(222,196,164);
+	border-radius:3px;
+}
+
+.btns:hover{
+	background-color:rgb(169,31,43);
+	border-radius:3px;
+	opacity:1;
+}
+
+.btns:active{
+	background-color:rgb(250,250,250);
+}
+
+.clearfix:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+
+/*header
+-------------------*/
+#header{
+	width:100%;
+	height:80px;
+	background-color:rgb(169,31,43);
+	position:fixed;
+	top:0;
+}
+
+#header p{
+	margin:0px;
+}
+
+#header img{
+	display:inline-block;
+	margin-top:5px;
+	margin-right:15px;
+	float:left;
+}
+
+#header input{
+	display:inline-block;
+	width:300px;
+	margin-top:18px;
+	padding:10px;
+	font-size:18px;
+	border:rgb(249,244,237) 1px solid;
+	border-radius:3px;
+	float:left;
+}
+
+#header ul{
+	display:block;
+	margin-top:0px;
+	float:right;
+}
+
+#header ul li{
+	border-right:rgb(250,250,250) 1px solid;
+	list-style:none;
+	float:left;
+}
+
+#header ul li a{
+	display:inline-block;
+	width:90px;
+	padding:30px 0px;
+	font-size:14px;
+	line-height:20px;
+	font-weight:bold;
+	color:rgb(249,244,237);
+	background-color:rgb(222,196,164);
+	text-align:center;
+}
+
+#header ul li a:hover{
+	color:rgb(169,31,43);
+	background-color:rgb(250,250,250)
+	border:rgb(169,31,43) 1px solid;
+	background-color:rgb(250,250,250);
+	opacity:1;
+}
+
+#header ul li:last-child{
+	border-right:rgb(250,250,250) 0px solid;
+}
+
+/*main
+-------------------*/
+#main{
+	/*min-height:calc(100vh - 130px); /*footerの高さは100px,margin30px*/
+	margin-top:110px;
+}
+
+/*article
+-------------------*/
+#article{
+	width:610px;
+	background-color:rgb(250,250,250);
+	border:rgb(169,31,43) 2px solid;
+	border-radius:3px;
+	box-shadow:0px 0px 2px 0px rgb(191,156,80);
+	float:right;
+}
+
+.post{
+	/*background-color:#0fa;*/
+	border-bottom:rgb(169,31,43) 1px solid;
+}
+
+.post:last-child{
+	border-bottom:rgb(169,31,43) 0px solid;
+}
+
+.post img{
+	margin:5px;
+	float:left;
+}
+
+.post_text{
+	width:550px;
+	margin:0px 0px 0px 0px;
+	padding:5px;
+	/*background-color:#ff0;*/
+	float:left;
+}
+
+.post_text h4{
+	margin:0px;
+	/*background-color:#00f;*/
+}
+
+.post_text span{
+	font-weight: normal;
+}
+
+.post_text p{
+	margin:0px;
+	/*background-color:#0ff;*/
+}
+
+#pages{
+	background-color:rgb(222,196,164);
+}
+
+#pages p{
+	margin:0px;
+	color:rgb(169,31,43);
+	text-align:right;
+}
+
+#pages a{
+	color:rgb(169,31,43);
+	text-decoration:underline;
+}
+
+#pages a:visited{
+	color:rgb(169,31,143);
+}
+
+/*aside
+-------------------*/
+#aside{
+	width:276px;
+	margin-right:30px;
+	/*background-color:rgb(169,31,43);*/
+	float:left;
+}
+
+#user{
+	width:276px;
+	margin-bottom:10px;
+	background-color:rgb(250,250,250);
+	border:rgb(169,31,43) 2px solid;
+	border-radius:3px;
+	box-shadow:0px 0px 2px 0px rgb(191,156,80);
+}
+
+#user img{
+	margin:5px;
+	float:left;
+}
+
+#user_text{
+	padding:5px;
+	float:left;
+}
+
+#user_text h4{
+	margin:0px;
+	/*background-color:#00f;*/
+}
+
+#user_text p{
+	width:176px;
+	margin:0px;
+	font-size:14px;
+	/*background-color:#0ff;*/
+}
+
+#new{
+	width:276px;
+	background-color:rgb(250,250,250);
+	border:rgb(169,31,43) 2px solid;
+	border-radius:3px;
+	box-shadow:0px 0px 2px 0px rgb(191,156,80);
+}
+
+#new h4{
+	margin:5px 10px 0px;
+}
+
+#new .btns{
+	margin:0px 10px 10px;
+}
+
+#new p{
+	margin:5px 10px;
+	clear:both;
+}
+
+#new p input{
+	width:230px;
+	padding:3px;
+	font-size:14px;
+	background-color:rgb(255,255,255);
+	border-radius:3px;
+}
+
+#new textarea{
+	min-width:240px;
+	min-height:200px;
+	font-size:14px;
+	background-color:rgb(255,255,255);
+	border-radius:3px;
+}
+
+
+/*footer
+-------------------*/
+#footer{
+	/*最下部設定はmainでclac*/
+	width:100%;
+	min-width:1280px;
+	height:100px;
+	padding:20px 0px 30px;
+	margin-top:auto;
+	background-color:rgb(222,196,164);
+}
+
+#footer p:first-child{
+	margin:30px 0px 0px;
+	text-align:center;
+}
+
+#footer a{
+	padding:10px;
+	background-color:rgb(250,250,250);
+	border:rgb(169,31,43) 1px solid;
+	border-radius:3px;
+}
+
+#footer a:hover{
+	color:rgb(250,250,250);
+	background-color:rgb(169,31,43);
+	opacity: 1;
+}
+
+.copyright{
+	text-align:center;
+	color:rgb(250,250,250);
+}
+
+/*loginbox
+-------------------*/
+.loginbox{
+	width:500px;
+	margin:100px auto 50px;
+	padding:20px;
+	background-color:rgb(250,250,250);
+	border:rgb(169,31,43) 2px solid;
+	border-radius:10px;
+}
+
+.loginbox .logoimg, .loginbox img{
+	width:100px;
+	height:50px;
+	margin:0px auto;
+}
+
+.loginbox hr{
+	margin:20px 0px;
+	border:rgb(169,31,43) 0.5px solid;
+}
+
+.loginbox p{
+	text-align:center;
+}
+
+.inputbox p{
+	margin-left:0px;
+	margin-right:80px;
+	margin-bottom:5px;
+	float:right;
+}
+
+.inputbox input{
+	width:300px;
+	height:30px;
+	padding:0px 5px;
+	font-size:14px;
+	border-radius:3px;
+}
+
+.inputbox .btns{
+	width:160px;
+	height:40px;
+	margin:20px 50%;
+	transform:translate(-80px,0px);
+	font-weight:bold;
+}
+
+.to_acc p{
+	margin:10px 0px 50px;
+	color:#444;
+	text-align:center;
+}
+.to_acc a{
+	color:rgb(169,31,43);
+	text-decoration:underline;
+}
+
+
+/*configページ
+-------------------*/
+#article_config{
+	width:610px;
+	background-color:rgb(250,250,250);
+	border:rgb(169,31,43) 2px solid;
+	border-radius:3px;
+	box-shadow:0px 0px 2px 0px rgb(191,156,80);
+	float:right;
+}
+
+#article_config h5{
+	margin:20px;
+	text-align:center;
+}
+
+#article_config hr{
+	border:rgb(169,31,43) 1px solid;
+	margin:20px;
+}
+
+#article_config .btns{
+	width:160px;
+	height:50px;
+	margin:10px 50% 10px;
+	font-size:16px;
+	transform:translate(-80px,0px); /*widthの半分*/
+	border-radius:3px;
+}
+
+#article_config p:last-child{
+	text-align:center;
+	/*background-color:#f00;*/
+}
+
+#table_config{
+	width:570px;
+	margin:0px 20px 50px;
+	/*border:#f00 2px solid;*/
+	/*background-color:#0ff;*/
+}
+
+#table_config th{
+	width:70px;
+	padding-right:10px;
+	text-align:right;
+	line-height:20px;
+	/*background-color:#00f;*/
+	vertical-align:top;
+}
+
+#table_config td{
+	width:510px;
+	/*background-color:#ff0;*/
+	vertical-align:top;
+}
+
+#table_config input{
+	width:250px;
+	height:20px;
+	margin-bottom:50px;
+	padding:5px;
+	font-size:16px;
+	border-radius:5px;
+}
+
+#table_config p{
+	margin-bottom:5px;
+}
+
+#table_config td{
+	line-height:20px;
+	width:400px;
+	/*background-color:#f0f;*/
+}
+
+#table_config textarea{
+	width:370px;
+	max-width:440px;
+	height:80px;
+	max-height:500px;
+	margin-bottom:40px;
+	padding:5px;
+	border-radius:5px;
+}
+
+#table_config #thumbnail_uploader{
+	height:16px;
+	font-size:12px;
+	border:#fff 0px solid;
+}
+
+#table_config a{
+	text-decoration:underline;
+}
