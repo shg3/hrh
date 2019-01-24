@@ -32,7 +32,7 @@ try{
 
 	// プリペアドステートメント
 	$stmt=$db->prepare(
-		"SELECT * FROM post WHERE userId=:userId ORDER BY date DESC LIMIT :page, :num"
+		"SELECT * FROM posts WHERE userId=:userId ORDER BY date DESC LIMIT :page, :num"
 	);
 
 	// パラメータ割り当て
@@ -56,10 +56,12 @@ try{
 	<link rel="stylesheet" href="style.css" media="all">
 </head>
 <body>
-<div id="wrap_config" class="wrao">
+<div class="wrap">
 	<header id="header" class="clearfix">
 		<div class="container">
-			<p><img src="sampleImg/logo.png" width="140" height="70" alt="logo"></p>
+			<img src="sampleImg/logo.png" width="140" height="70" alt="logo">
+			<form action="search.php" method="POST">
+				<input type="search" name="search" placeholder="🔍">
 			</form>
 			<ul class="clearfix">
 				<li><p><a href="index.php">Home</a></p></li>
@@ -116,7 +118,7 @@ try{
 				try{
 					// プリペアドステートメント
 					$stmt=$db->prepare(
-						'SELECT COUNT(*) FROM post'
+						'SELECT COUNT(*) FROM posts'
 					);
 
 					// クエリ実行
@@ -144,19 +146,19 @@ try{
 
 			<aside id="aside">
 				<div id="user" class="clearfix">
-					<a href="user.php">
-						<?php
-						$mythumbnail="thumbnail/".$_SESSION['userId']."_thumbnail.png";
-						if(file_exists($mythumbnail)){
-							echo '<img src="'.$mythumbnail.'"width="80" height="80" alt="ac_img">';
-						}else{
-							echo '<img src="sampleImg/si_gray.png" width="80" height="80" alt="ac_img">';
-						}
-						?>
-						<div id="user_text">
-							<h4><?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8');?></h4>
+					<?php
+					echo '<a href="user.php?userpage='.$_SESSION['userId'].'">';
+					$mythumbnail="thumbnail/".$_SESSION['userId']."_thumbnail.png";
+					if(file_exists($mythumbnail)){
+						echo '<img src="'.$mythumbnail.'"width="80" height="80" alt="noImg">';
+					}else{
+						echo '<img src="sampleImg/si_gray.png" width="80" height="80" alt="noImg">';
+					}
+					?>
+					<div id="user_text">
+						<h4><?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8');?></h4>
 					</a>
-							<p><?php echo nl2br(htmlspecialchars($_SESSION['profile'],ENT_QUOTES, 'UTF-8'));?></p>
+						<p><?php echo nl2br(htmlspecialchars($_SESSION['profile'],ENT_QUOTES, 'UTF-8'));?></p>
 					</div>
 				</div>
 				<div id="new">

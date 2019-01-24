@@ -53,13 +53,13 @@ try{
 	<link rel="stylesheet" href="style.css" media="all">
 </head>
 <body>
-<div id="index_wrap" class="wrap">
+<div class="wrap">
+
 	<header id="header" class="clearfix">
 		<div class="container">
 			<img src="sampleImg/logo.png" width="140" height="70" alt="logo">
 			<form action="search.php" method="POST">
 				<input type="search" name="search" placeholder="🔍">
-				<!--<input type="submit" value="検索" calss="btns">-->
 			</form>
 			<ul class="clearfix">
 				<li><p><a href="index.php">Home</a></p></li>
@@ -144,19 +144,19 @@ try{
 
 			<aside id="aside">
 				<div id="user" class="clearfix">
-					<a href="user.php">
-						<?php
-						$mythumbnail="thumbnail/".$_SESSION['userId']."_thumbnail.png";
-						if(file_exists($mythumbnail)){
-							echo '<img src="'.$mythumbnail.'"width="80" height="80" alt="ac_img">';
-						}else{
-							echo '<img src="sampleImg/si_gray.png" width="80" height="80" alt="noImg">';
-						}
-						?>
-						<div id="user_text">
-							<h4><?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8');?></h4>
+					<?php
+					echo '<a href="user.php?userpage='.$_SESSION['userId'].'">';
+					$mythumbnail="thumbnail/".$_SESSION['userId']."_thumbnail.png";
+					if(file_exists($mythumbnail)){
+						echo '<img src="'.$mythumbnail.'"width="80" height="80" alt="ac_img">';
+					}else{
+						echo '<img src="sampleImg/si_gray.png" width="80" height="80" alt="noImg">';
+					}
+					?>
+					<div id="user_text">
+						<h4><?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8');?></h4>
 					</a>
-							<p><?php echo nl2br(htmlspecialchars($_SESSION['profile'], ENT_QUOTES, 'UTF-8'));?></p>
+						<p><?php echo nl2br(htmlspecialchars($_SESSION['profile'], ENT_QUOTES, 'UTF-8'));?></p>
 					</div>
 				</div>
 				<div id="new">
@@ -174,7 +174,7 @@ try{
 	<footer id="footer">
 		<div class="container">
 			<p><a href="logout.php">ログアウト</a></p>
-			<p class="copyright">Copyright &copy; bunbunbunko All Right Reserved.</p>
+			<p class="copyright">Copyright &copy; hrh All Right Reserved.</p>
 		</div>
 	</footer>
 </div>

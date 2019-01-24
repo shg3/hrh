@@ -9,11 +9,10 @@ include 'include/checkLogin.php';
 	<link rel="stylesheet" href="style.css" media="all">
 </head>
 <body>
-<div id="wrap_config">
+<div class="wrap">
 	<header id="header" class="clearfix">
 		<div class="container">
-			<p><img src="ae/out/logo.png" width="140" height="70" alt="logo"></p>
-			</form>
+			<p><img src="sampleImg/logo.png" width="140" height="70" alt="logo"></p>
 			<ul class="clearfix">
 				<li><p><a href="index.php">Home</a></p></li>
 				<li><p><a href="#" target="_blank">List</a></p></li><!-- 未実装です -->

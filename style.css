@@ -149,7 +149,6 @@ textarea{
 /*main
 -------------------*/
 #main{
-	/*min-height:calc(100vh - 130px); /*footerの高さは100px,margin30px*/
 	margin-top:110px;
 }
 
@@ -300,7 +299,7 @@ textarea{
 /*footer
 -------------------*/
 #footer{
-	/*最下部設定はmainでclac*/
+	/*最下部設定はwrapで設定してる*/
 	width:100%;
 	min-width:1280px;
 	height:100px;
@@ -332,7 +331,7 @@ textarea{
 	color:rgb(250,250,250);
 }
 
-/*loginbox
+/*loginページ
 -------------------*/
 .loginbox{
 	width:500px;
