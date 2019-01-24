@@ -14,7 +14,7 @@ MySQL Databaseはターミナルで設定し、
 - パスワード：`password`
 - 文字コード：`UTF-8`
 
-#### テーブル1：`users`
+### テーブル1：`users`
 ログインするユーザー情報を記録するテーブル
 
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -23,7 +23,7 @@ MySQL Databaseはターミナルで設定し、
 	password VARCHAR(255) NOT NULL,
 	profile TEXT
 
-#### テーブル2：`post`
+### テーブル2：`post`
 掲示板に書き込まれたテキストを記録するテーブル
 
 	id INT NOT NULL,
@@ -34,7 +34,7 @@ MySQL Databaseはターミナルで設定し、
 	date DATETIME NOT NULL
 
 ***
-## 下記ターミナルのコピペになります。
+### 下記ターミナルのコピペになります。
 ###### MySQLの起動とデータベースの作成
 
 	cd /Applications/XAMPP/bin;
