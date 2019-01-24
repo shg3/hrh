@@ -50,7 +50,7 @@ MySQL Databaseはターミナルで設定し、
 	email VARCHAR(255) NOT NULL,
 	password VARCHAR(255) NOT NULL,
 	profile TEXT
-	)DEFAULT CHARCTER SET=utf8;
+	)DEFAULT CHARACTER SET=utf8;
 
 	CREATE TABLE posts(
 	userId INT NOT NULL,
@@ -59,7 +59,7 @@ MySQL Databaseはターミナルで設定し、
 	title VARCHAR(255) NOT NULL,
 	maintext TEXT NOT NULL,
 	date DATETIME NOT NULL
-	)DAFAULT CHARACTER SET=utf8;
+	)DEFAULT CHARACTER SET=utf8;
 
 ###### ユーザーの追加
 
