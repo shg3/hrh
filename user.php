@@ -2,9 +2,9 @@
 include 'include/checkLogin.php';
 
 // データベースhrh, テーブルpost, データベースユーザーhrhuser
-// id INT NOT NULL,
+// userId INT NOT NULL,
 // name VARCHAR(255) NOT NULL,
-// postnum INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+// id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 // title VARCHAR(255) NOT NULL,
 // maintext TEXT NOT NULL,
 // date DATETIME NOT NULL
@@ -32,14 +32,14 @@ try{
 
 	// プリペアドステートメント
 	$stmt=$db->prepare(
-		"SELECT * FROM post WHERE id=:id ORDER BY date DESC LIMIT :page, :num"
+		"SELECT * FROM post WHERE userId=:userId ORDER BY date DESC LIMIT :page, :num"
 	);
 
 	// パラメータ割り当て
 	$page=$num*$page;
 	$stmt->bindParam(':page', $page, PDO::PARAM_INT);
 	$stmt->bindParam(':num', $num, PDO::PARAM_INT);
-	$stmt->bindParam(':id', $userpage, PDO::PARAM_INT);
+	$stmt->bindParam(':userId', $userpage, PDO::PARAM_INT);
 
 	//クエリ実行
 	$stmt->execute();
@@ -59,12 +59,12 @@ try{
 <div id="wrap_config" class="wrao">
 	<header id="header" class="clearfix">
 		<div class="container">
-			<p><img src="ae/out/logo.png" width="140" height="70" alt="logo"></p>
+			<p><img src="sampleImg/logo.png" width="140" height="70" alt="logo"></p>
 			</form>
 			<ul class="clearfix">
 				<li><p><a href="index.php">Home</a></p></li>
-				<li><p><a href="#" target="_blank">List</a></p></li>
-				<li><p><a href="#" target="_blank">Message</a></p></li>
+				<li><p><a href="#" target="_blank">List</a></p></li><!-- 未実装です -->
+				<li><p><a href="#" target="_blank">Message</a></p></li><!-- 未実装です -->
 				<li><p><a href="config.php">Config</a></p></li>
 			</ul>
 		</div>
@@ -78,18 +78,18 @@ try{
 				?>
 				<div class="post clearfix">
 						<?php
-						echo '<a href="user.php?userpage='.$row['id'].'">'; // GET['userpage']で受けとる
-						$thumbnail="thumbnail/".$row['id']."_thumbnail.png";
+						echo '<a href="user.php?userpage='.$row['userId'].'">'; // GET['userpage']で受けとる
+						$thumbnail="thumbnail/".$row['userId']."_thumbnail.png";
 						if(file_exists($thumbnail)){
 							echo '<img src="'.$thumbnail.'"width="40" height="40" alt="ac_img">';
 						}else{
-							echo '<img src="ae/out/ac_img.png" width="40" height="40" alt="ac_img">';
+							echo '<img src="sampleImg/si_gray.png" width="40" height="40" alt="ac_img">';
 						}
 						?>
 						</a>
 					<div class="post_text">
 						<?php
-						echo '<a href="user.php?userpage='.$row['id'].'">';
+						echo '<a href="user.php?userpage='.$row['userId'].'">';
 						?>
 						<h4>
 							<?php echo htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') ?>
@@ -100,9 +100,9 @@ try{
 						</a>
 						<p><?php echo nl2br(htmlspecialchars($row['maintext'], ENT_QUOTES, 'UTF-8'), false) ?></p>
 						<form action="delete.php" method="POST">
-							<input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
-							<input type="hidden" name="postnum" value="<?php echo $row['postnum'] ?>">
-							<?php if($row['id']==$_SESSION['id']){
+							<input type="hidden" name="userId" value="<?php echo $_SESSION['userId']; ?>">
+							<input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+							<?php if($row['userId']==$_SESSION['userId']){
 								echo '<input type="submit" value="ー" class="btns">';
 							}
 							?>
@@ -146,11 +146,11 @@ try{
 				<div id="user" class="clearfix">
 					<a href="user.php">
 						<?php
-						$mythumbnail="thumbnail/".$_SESSION['id']."_thumbnail.png";
+						$mythumbnail="thumbnail/".$_SESSION['userId']."_thumbnail.png";
 						if(file_exists($mythumbnail)){
 							echo '<img src="'.$mythumbnail.'"width="80" height="80" alt="ac_img">';
 						}else{
-							echo '<img src="ae/out/ac_img.png" width="80" height="80" alt="ac_img">';
+							echo '<img src="sampleImg/si_gray.png" width="80" height="80" alt="ac_img">';
 						}
 						?>
 						<div id="user_text">
@@ -175,7 +175,7 @@ try{
 	<footer id="footer">
 		<div class="container">
 			<p><a href="logout.php">ログアウト</a></p>
-			<p class="copyright">Copyright &copy; bunbunbunko All Right Reserved.</p>
+			<p class="copyright">Copyright &copy; hrh All Right Reserved.</p>
 		</div>
 	</footer>
 </div>

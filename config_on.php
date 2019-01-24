@@ -1,7 +1,7 @@
 <?php
 include 'include/checkLogin.php';
 // データベースhrh, テーブルusers, データベースユーザーhrhuser
-// id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+// userId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 // name VARCHAR(255) NOT NULL,
 // email VARCHAR(255) NOT NULL,
 // password VARCHAR(255) NOT NULL,
@@ -16,12 +16,12 @@ if(
 ){
 	// 画像の変数格納
 	/* 現状は受け取ったものはすべてpngにして上書き保存する方針
-	$img_name_jpg=$_SESSION['id'].'_'.date('ymdHis').'_'.mt_rand(11,99).'.jpg';
-	$img_name_png=$_SESSION['id'].'_'.date('ymdHis').'_'.mt_rand(11,99).'.png';
-	$img_name_gif=$_SESSION['id'].'_'.date('ymdHis').'_'.mt_rand(11,99).'.gif';
-	$img_name_jpg=$_SESSION['id'].'_thumbnail.jpg';
-	$img_name_gif=$_SESSION['id'].'_thumbnail.gif';*/
-	$img_name_png=$_SESSION['id'].'_thumbnail.png';
+	$img_name_jpg=$_SESSION['userId'].'_'.date('ymdHis').'_'.mt_rand(11,99).'.jpg';
+	$img_name_png=$_SESSION['userId'].'_'.date('ymdHis').'_'.mt_rand(11,99).'.png';
+	$img_name_gif=$_SESSION['userId'].'_'.date('ymdHis').'_'.mt_rand(11,99).'.gif';
+	$img_name_jpg=$_SESSION['userId'].'_thumbnail.jpg';
+	$img_name_gif=$_SESSION['userId'].'_thumbnail.gif';*/
+	$img_name_png=$_SESSION['userId'].'_thumbnail.png';
 
 	// 元画像の縦横サイズを取得
 	list($width, $height)=getimagesize($_FILES['origin_img']['tmp_name']);
@@ -88,27 +88,27 @@ if(
 		// 分岐プリペアドステートメントの実行
 		if(!($user_name=='' || preg_match('/^[\s　]{1,}$/u',$user_name))){
 			// 名前が変更された場合はpostテーブルもアップデートする
-			$stmt1=$db->prepare('UPDATE users SET name=:name WHERE id=:id');
-			$stmt2=$db->prepare('UPDATE post SET name=:name WHERE id=:id');
+			$stmt1=$db->prepare('UPDATE users SET name=:name WHERE userId=:userId');
+			$stmt2=$db->prepare('UPDATE post SET name=:name WHERE userId=:userId');
 			$stmt1->bindParam(':name', $user_name, PDO::PARAM_STR);
-			$stmt1->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
+			$stmt1->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
 			$stmt2->bindParam(':name', $user_name, PDO::PARAM_STR);
-			$stmt2->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
+			$stmt2->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
 			$stmt1->execute();
 			$stmt2->execute();
 			$_SESSION['name']=$user_name;
 		}
 		if(!($user_email=='' || preg_match('/^[\s　]{1,}$/u',$user_email))){
-			$stmt=$db->prepare('UPDATE users SET email=:email WHERE id=:id');
+			$stmt=$db->prepare('UPDATE users SET email=:email WHERE userId=:userId');
 			$stmt->bindParam(':email', $user_email, PDO::PARAM_STR);
-			$stmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
+			$stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
 			$stmt->execute();
 			$_SESSION['email']=$user_email;
 		}
 		if(!$user_profile==''){
-			$stmt=$db->prepare('UPDATE users SET profile=:profile WHERE id=:id');
+			$stmt=$db->prepare('UPDATE users SET profile=:profile WHERE userId=:userId');
 			$stmt->bindParam(':profile', $user_profile, PDO::PARAM_STR);
-			$stmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
+			$stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
 			$stmt->execute();
 			$_SESSION['profile']=$user_profile;
 		}

@@ -60,7 +60,7 @@ if(
 <body>
 <div class="loginbox">
 	<div class="logoimg">
-		<img src="ae/out/logo.png">
+		<img src="sampleImg/logo.png">
 	</div>
 	<hr>
 	<p>新規アカウントを作成します。</p>
@@ -78,7 +78,7 @@ if(
 </div>
 <div class="to_acc">
 	<p><a href="login.php">ログインページに戻る</a></p>
-	<p class="copyright">Copyright &copy; bunbunbunko All Right Reserved.</p>
+	<p class="copyright">Copyright &copy; hrh All Right Reserved.</p>
 </div>
 </body>
 </html>

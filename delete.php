@@ -1,10 +1,10 @@
 <?php
 include 'include/checkLogin.php';
 
+$userId=intval($_POST['userId']);
 $id=intval($_POST['id']);
-$postnum=intval($_POST['postnum']);
 
-if($id=='' && $postnum==''){
+if($userId=='' && $id==''){
 	header('Location: index.php');
 }
 
@@ -20,12 +20,12 @@ try{
 
 	// プリペアドステートメント
 	$stmt=$db->prepare(
-		"DELETE FROM post WHERE id=:id AND postnum=:postnum"
+		"DELETE FROM posts WHERE userId=:userId AND id=:id"
 	);
 
 	// パラメータ割り当て
+	$stmt->bindParam(':userId', $userId, PDO::PARAM_STR);
 	$stmt->bindParam(':id', $id, PDO::PARAM_STR);
-	$stmt->bindParam(':postnum', $postnum, PDO::PARAM_STR);
 
 	//クエリ実行
 	$stmt->execute();

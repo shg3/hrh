@@ -1,7 +1,7 @@
 <?php
-// データベースhrh, テーブルpost, データベースユーザーhrhuser
+// データベースhrh, テーブルposts, データベースユーザーhrhuser
 // id INT NOT NULL,
-// name VARCHAR KEY NOT NULL,
+// name VARCHAR(255) KEY NOT NULL,
 // title VARCHAR(255) NOT NULL,
 // maintext text NOT NULL,
 // date DATETIME NOT NULL
@@ -34,7 +34,7 @@ try{
 
 	// プリペアドステートメント
 	$stmt=$db->prepare(
-		"INSERT INTO post (id, name, title, maintext, date)
+		"INSERT INTO posts (id, name, title, maintext, date)
 		VALUES (:id, :name, :title, :maintext, now())"
 	);
 

@@ -44,7 +44,7 @@ if(isset($_POST['quickpass'])){
 
 		if($row=$stmt2->fetch()){
 			// セッション変数の格納・不要なものは消去
-			$_SESSION['id']=$row['id'];
+			$_SESSION['userId']=$row['userId'];
 			$_SESSION['email']=$row['email'];
 			$_SESSION['name']=$row['name'];
 			$_SESSION['password']=$row['password'];
@@ -85,7 +85,7 @@ if(isset($_POST['quickpass'])){
 <body>
 <div class="loginbox">
 	<div class="logoimg">
-		<img src="ae/out/logo.png">
+		<img src="sampleImg/logo.png">
 	</div>
 	<hr>
 	<p>メールに記載された暗証番号を入力してください。</p>

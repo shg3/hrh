@@ -1,6 +1,6 @@
 <?php
 // データベースhrh, テーブルusers, データベースユーザーhrhuser
-// id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+// userId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 // name VARCHAR(255) NOT NULL,
 // email VARCHAR(255) NOT NULL,
 // password VARCHAR(255) NOT NULL,
@@ -9,7 +9,7 @@
 session_start();
 
 // idがあればindexへ
-if(isset($_SESSION['id'])){
+if(isset($_SESSION['userId'])){
 	header('Location: index.php');
 	exit();
 }else if(isset($_POST['name']) && isset($_POST['password'])){
@@ -40,7 +40,7 @@ if(isset($_SESSION['id'])){
 
 		if($row=$stmt->fetch()){
 			// セッションidを格納
-			$_SESSION['id']=$row['id'];
+			$_SESSION['userId']=$row['userId'];
 		 	$_SESSION['email']=$row['email'];
 			$_SESSION['name']=$row['name'];
 			$_SESSION['password']=$row['password'];
@@ -73,7 +73,7 @@ if(isset($_SESSION['id'])){
 <body>
 <div class="loginbox">
 	<div class="logoimg">
-		<img src="ae/out/logo.png">
+		<img src="sampleImg/logo.png">
 	</div>
 	<hr>
 	<form action="login.php" method="POST" class="inputbox clearfix">
@@ -84,7 +84,7 @@ if(isset($_SESSION['id'])){
 </div>
 <div class="to_acc">
 	<p><a href="makeNewAccount.php">アカウントを作成する</a></p>
-	<p class="copyright">Copyright &copy; bunbunbunko All Right Reserved.</p>
+	<p class="copyright">Copyright &copy; hrh All Right Reserved.</p>
 </div>
 </body>
 </html>

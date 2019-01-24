@@ -16,8 +16,8 @@ include 'include/checkLogin.php';
 			</form>
 			<ul class="clearfix">
 				<li><p><a href="index.php">Home</a></p></li>
-				<li><p><a href="#" target="_blank">List</a></p></li>
-				<li><p><a href="#" target="_blank">Message</a></p></li>
+				<li><p><a href="#" target="_blank">List</a></p></li><!-- 未実装です -->
+				<li><p><a href="#" target="_blank">Message</a></p></li><!-- 未実装です -->
 				<li><p><a href="config.php">Config</a></p></li>
 			</ul>
 		</div>
@@ -72,7 +72,7 @@ include 'include/checkLogin.php';
 			<div id="user" class="clearfix">
 					<a href="user.php">
 						<?php
-						$mythumbnail="thumbnail/".$_SESSION['id']."_thumbnail.png";
+						$mythumbnail="thumbnail/".$_SESSION['userId']."_thumbnail.png";
 						if(file_exists($mythumbnail)){
 							echo '<img src="'.$mythumbnail.'"width="80" height="80" alt="ac_img">';
 						}else{

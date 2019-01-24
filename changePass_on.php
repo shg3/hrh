@@ -23,11 +23,11 @@ if(isset($_POST['quickpass'])){
 			$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 			// プリペアドステートメント作成
 			$stmt=$db->prepare(
-				'UPDATE users SET password=:password_re WHERE id=:id AND password=:password_old'
+				'UPDATE users SET password=:password_re WHERE user=:user AND password=:password_old'
 			);
 			// パラメータ割り当て
 			$stmt->bindParam(':password_re', sha1($password_re), PDO::PARAM_STR);
-			$stmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
+			$stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
 			$stmt->bindParam(':password_old', sha1($password_old), PDO::PARAM_STR);
 			// クエリ実行
 			$stmt->execute();
@@ -76,7 +76,7 @@ if(isset($_POST['quickpass'])){
 </div>
 <div class="to_acc">
 	<p><a href="config.php">Configに戻る</a></p>
-	<p class="copyright">Copyright &copy; bunbunbunko All Right Reserved.</p>
+	<p class="copyright">Copyright &copy; hrh All Right Reserved.</p>
 </div>
 </body>
 </html>
