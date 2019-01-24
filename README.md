@@ -9,12 +9,12 @@ MySQL Databaseはターミナルで設定し、
 と認識していただければと思います。
 
 ## データベース概要
-- データベース名：'hrh'
-- データベースユーザー名：'hrhuser'
-- パスワード：'password'
-- 文字コード：'UTF-8'
+- データベース名：`hrh`
+- データベースユーザー名：`hrhuser`
+- パスワード：`password`
+- 文字コード：`UTF-8`
 
-#### テーブル1：'users'
+#### テーブル1：`users`
 ログインするユーザー情報を記録するテーブル
 
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -23,7 +23,7 @@ MySQL Databaseはターミナルで設定し、
 	password VARCHAR(255) NOT NULL,
 	profile TEXT
 
-#### テーブル2：'post'
+#### テーブル2：`post`
 掲示板に書き込まれたテキストを記録するテーブル
 
 	id INT NOT NULL,
@@ -34,15 +34,15 @@ MySQL Databaseはターミナルで設定し、
 	date DATETIME NOT NULL
 
 ***
-### 下記ターミナルのコピペになります。
-1. MySQLの起動とデータベースの作成
+## 下記ターミナルのコピペになります。
+###### MySQLの起動とデータベースの作成
 
 	cd /Applications/XAMPP/bin;
 	./mysql -u root;
 	CREATE DATABASE hrh;
 	USE hrh;
 
-2. テーブルの作成
+###### テーブルの作成
 
 	CREATE TABLE users(
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -61,11 +61,11 @@ MySQL Databaseはターミナルで設定し、
 	date DATETIME NOT NULL
 	)DAFAULT CHARACTER SET=utf8;
 
-3. ユーザーの追加
+###### ユーザーの追加
 
 	GRANT ALL ON hrh.*to 'hrhuser'@'localhost' IDENTIFIED BY 'password';
 
-4. 登録したユーザーで再ログイン(チェック)
+###### 登録したユーザーで再ログイン(チェック)
 
 	exit;
 	./mysql -u hrhuser -p;
