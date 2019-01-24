@@ -154,9 +154,9 @@ try{
 						}
 						?>
 						<div id="user_text">
-							<h4><?php echo $_SESSION['name'];?></h4>
+							<h4><?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8');?></h4>
 					</a>
-							<p><?php echo nl2br($_SESSION['profile']);?></p>
+							<p><?php echo nl2br(htmlspecialchars($_SESSION['profile']), ENT_QUOTES, 'UTF-8');?></p>
 					</div>
 				</div>
 				<div id="new">

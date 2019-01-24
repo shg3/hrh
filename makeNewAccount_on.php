@@ -7,8 +7,8 @@ session_start();
 $new_name=$_SESSION['new_name'];
 $new_email=$_SESSION['new_email'];
 $new_password=$_SESSION['new_password'];
-// $quickpass_session=$_SESSION['quickpass'];
-$quickpass_session=119; //テスト用のquickpass「119」
+$quickpass_session=$_SESSION['quickpass'];
+// $quickpass_session=119; //テスト用のquickpass「119」
 
 // 暗証番号が入力された場合
 if(isset($_POST['quickpass'])){
@@ -26,12 +26,8 @@ if(isset($_POST['quickpass'])){
 		$db= new PDO($dsn, $user, $password);
 		$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 		// プリペアドステートメント作成
-		$stmt1=$db->prepare(
-			'INSERT INTO users (name, email, password) VALUES (:name, :email, :password)'
-		);
-		$stmt2=$db->prepare(
-			'SELECT * FROM users WHERE name=:name AND password=:password'
-		);
+		$stmt1=$db->prepare('INSERT INTO users (name, email, password) VALUES (:name, :email, :password)');
+		$stmt2=$db->prepare('SELECT * FROM users WHERE name=:name AND password=:password');
 		// パラメータ割り当て
 		$stmt1->bindParam(':name', $new_name, PDO::PARAM_STR);
 		$stmt1->bindParam(':email', $new_email, PDO::PARAM_STR);

@@ -23,7 +23,8 @@ if(
 	}else{
 		// 適切な値だった場合
 		// メール記載事項格納
-		$quickpass=time()*rand(1,9);
+		$quickpass=119;
+		// $quickpass=time()*rand(1,9);
 		$mail_title='hrh新規アカウント作成：'.$new_name.'様';
 		$mail_text='hrh新規アカウント作成のご案内になります。\n
 		下記の暗証番号をURL記載ページにてご入力ください。\n

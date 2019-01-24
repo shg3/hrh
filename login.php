@@ -14,10 +14,6 @@ if(isset($_SESSION['userId'])){
 	exit();
 }else if(isset($_POST['name']) && isset($_POST['password'])){
 	// フォーム入力された時
-	if($_POST=='' || $_POST['password']==''){
-		header('Location: index.php');
-		exit();
-	}
 	//データベース接続
 	$dsn='mysql:host=localhost; dbname=hrh; charset=utf8';
 	$user='hrhuser';
@@ -29,9 +25,7 @@ if(isset($_SESSION['userId'])){
 		$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 		print_r($db->errorInfo());
 		// プリペアドステートメント
-		$stmt=$db->prepare(
-			'SELECT * FROM users WHERE name=:name AND password=:password'
-		);
+		$stmt=$db->prepare('SELECT * FROM users WHERE name=:name AND password=:password');
 		// パラメータの割り当て
 		$stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
 		$stmt->bindParam(':password', sha1($_POST['password']), PDO::PARAM_STR);
