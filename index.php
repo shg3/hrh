@@ -81,9 +81,9 @@ try{
 						echo '<a href="user.php?userpage='.$row['userId'].'">'; // GET['userpage']で受けとる
 						$thumbnail="thumbnail/".$row['userId']."_thumbnail.png";
 						if(file_exists($thumbnail)){
-							echo '<img src="'.$thumbnail.'"width="40" height="40" alt="ac_img">';
+							echo '<img src="'.$thumbnail.'"width="40" height="40" alt="noImg">';
 						}else{
-							echo '<img src="ae/out/ac_img.png" width="40" height="40" alt="ac_img">';
+							echo '<img src="sampleImg/si_gray.png" width="40" height="40" alt="noImg">';
 						}
 						?>
 						</a>
@@ -100,8 +100,8 @@ try{
 						</a>
 						<p><?php echo nl2br(htmlspecialchars($row['maintext'], ENT_QUOTES, 'UTF-8'), false) ?></p>
 						<form action="delete.php" method="POST">
-							<input type="hidden" name="id" value="<?php echo $_SESSION['userId']; ?>">
-							<input type="hidden" name="id" value="<?php echo $row['userId'] ?>">
+							<input type="hidden" name="userId" value="<?php echo $_SESSION['userId']; ?>">
+							<input type="hidden" name="id" value="<?php echo $row['id'] ?>">
 							<?php if($row['userId']==$_SESSION['userId']){
 								echo '<input type="submit" value="ー" class="btns">';
 							}
@@ -150,13 +150,13 @@ try{
 						if(file_exists($mythumbnail)){
 							echo '<img src="'.$mythumbnail.'"width="80" height="80" alt="ac_img">';
 						}else{
-							echo '<img src="ae/out/ac_img.png" width="80" height="80" alt="ac_img">';
+							echo '<img src="sampleImg/si_gray.png" width="80" height="80" alt="noImg">';
 						}
 						?>
 						<div id="user_text">
 							<h4><?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8');?></h4>
 					</a>
-							<p><?php echo nl2br(htmlspecialchars($_SESSION['profile']), ENT_QUOTES, 'UTF-8');?></p>
+							<p><?php echo nl2br(htmlspecialchars($_SESSION['profile'], ENT_QUOTES, 'UTF-8'));?></p>
 					</div>
 				</div>
 				<div id="new">
@@ -164,7 +164,6 @@ try{
 						<h4>new hrh</h4>
 						<p><input type="text" name="title"></p>
 						<p><textarea name="maintext"></textarea></p>
-						<input type="hidden" name="name" value="<?php echo $_SESSION['name']; ?>">
 						<input type="submit" value="＋" class="btns">
 					</form>
 				</div>

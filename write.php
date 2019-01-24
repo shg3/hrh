@@ -8,13 +8,13 @@
 include 'include/checkLogin.php';
 
 // 変数受け取り
-$id=$_SESSION['id'];
+$userId=$_SESSION['userId'];
 $name=$_SESSION['name'];
 $title=$_POST['title'];
 $maintext=$_POST['maintext'];
 
 if(
-	$id=='' ||
+	$userId=='' ||
 	$name=='' ||
 	$title=='' ||
 	$maintext==''
@@ -34,12 +34,12 @@ try{
 
 	// プリペアドステートメント
 	$stmt=$db->prepare(
-		"INSERT INTO posts (id, name, title, maintext, date)
-		VALUES (:id, :name, :title, :maintext, now())"
+		"INSERT INTO posts (userId, name, title, maintext, date)
+		VALUES (:userId, :name, :title, :maintext, now())"
 	);
 
 	// パラメータ割り当て
-	$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+	$stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
 	$stmt->bindParam(':name', $name, PDO::PARAM_STR);
 	$stmt->bindParam(':title', $title, PDO::PARAM_STR);
 	$stmt->bindParam(':maintext', $maintext, PDO::PARAM_STR);
