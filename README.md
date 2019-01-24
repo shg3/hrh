@@ -33,12 +33,12 @@ MySQL Databaseはターミナルで設定し、
 	maintext TEXT NOT NULL,
 	date DATETIME NOT NULL
 
-## mb_send_mailについて
-'makeNewAccount.php'と'makeNewAccount_on.php'では
-'mb_send_mail'を使ってメールを送信/受信し、
+## `mb_send_mail`について
+`makeNewAccount.php`と`makeNewAccount_on.php`では
+`mb_send_mail`を使ってメールを送信/受信し、
 メール記載の暗証番号を入力しないと先に進めないようになっておりますが、
 ローカルホストでの開発からまだ脱していないため、
-メール送受信はまだ適いません。テスト用の暗証番号'119'を入力して進んでください。
+メール送受信はまだ適いません。テスト用の暗証番号 __`119`__ を入力して進んでください。
 
 ***
 ## 下記ターミナルのコピペになります。
