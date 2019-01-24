@@ -89,7 +89,7 @@ if(
 		if(!($user_name=='' || preg_match('/^[\s　]{1,}$/u',$user_name))){
 			// 名前が変更された場合はpostテーブルもアップデートする
 			$stmt1=$db->prepare('UPDATE users SET name=:name WHERE userId=:userId');
-			$stmt2=$db->prepare('UPDATE post SET name=:name WHERE userId=:userId');
+			$stmt2=$db->prepare('UPDATE posts SET name=:name WHERE userId=:userId');
 			$stmt1->bindParam(':name', $user_name, PDO::PARAM_STR);
 			$stmt1->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
 			$stmt2->bindParam(':name', $user_name, PDO::PARAM_STR);

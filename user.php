@@ -83,9 +83,9 @@ try{
 						echo '<a href="user.php?userpage='.$row['userId'].'">'; // GET['userpage']で受けとる
 						$thumbnail="thumbnail/".$row['userId']."_thumbnail.png";
 						if(file_exists($thumbnail)){
-							echo '<img src="'.$thumbnail.'"width="40" height="40" alt="ac_img">';
+							echo '<img src="'.$thumbnail.'"width="40" height="40" alt="noImg">';
 						}else{
-							echo '<img src="sampleImg/si_gray.png" width="40" height="40" alt="ac_img">';
+							echo '<img src="sampleImg/si_gray.png" width="40" height="40" alt="noImg">';
 						}
 						?>
 						</a>

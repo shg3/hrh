@@ -23,7 +23,7 @@ if(isset($_POST['quickpass'])){
 			$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 			// プリペアドステートメント作成
 			$stmt=$db->prepare(
-				'UPDATE users SET password=:password_re WHERE user=:user AND password=:password_old'
+				'UPDATE users SET password=:password_re WHERE userId=:userId AND password=:password_old'
 			);
 			// パラメータ割り当て
 			$stmt->bindParam(':password_re', sha1($password_re), PDO::PARAM_STR);
@@ -57,7 +57,7 @@ if(isset($_POST['quickpass'])){
 <body>
 <div class="loginbox">
 	<div class="logoimg">
-		<img src="ae/out/logo.png">
+		<img src="sampleImg/logo.png">
 	</div>
 	<hr>
 	<p>メールに記載された暗証番号を入力してください。</p>

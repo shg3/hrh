@@ -58,7 +58,7 @@ if(
 <body>
 <div class="loginbox">
 	<div class="logoimg">
-		<img src="ae/out/logo.png">
+		<img src="sampleImg/logo.png">
 	</div>
 	<hr>
 	<p>パスワードを変更します。</p>

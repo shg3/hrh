@@ -31,21 +31,21 @@ include 'include/checkLogin.php';
 						<tr>
 							<th>Name:</th>
 							<td>
-								<?php echo $_SESSION['name']; ?><br>
+								<?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8'); ?><br>
 								<input type="text" name="user_name" placeholder="変更後Name">
 							</td>
 						</tr>
 						<tr>
 							<th>E-mail:</th>
 							<td>
-								<?php echo $_SESSION['email']; ?><br>
+								<?php echo htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?><br>
 								<input type="email" name="user_email" placeholder="変更後E-mail">
 							</td>
 						</tr>
 						<tr>
 							<th>Profile:</th>
 							<td>
-								<?php echo nl2br($_SESSION['profile']); ?><br>
+								<?php echo nl2br(htmlspecialchars($_SESSION['profile'], ENT_QUOTES, 'UTF-8')); ?><br>
 								<textarea name="user_profile" placeholder="Profileを入力してください"></textarea>
 							</td>
 						</tr>
@@ -73,9 +73,9 @@ include 'include/checkLogin.php';
 						<?php
 						$mythumbnail="thumbnail/".$_SESSION['userId']."_thumbnail.png";
 						if(file_exists($mythumbnail)){
-							echo '<img src="'.$mythumbnail.'"width="80" height="80" alt="ac_img">';
+							echo '<img src="'.$mythumbnail.'"width="80" height="80" alt="noImg">';
 						}else{
-							echo '<img src="ae/out/ac_img.png" width="80" height="80" alt="ac_img">';
+							echo '<img src="sampleImg/si_gray.png" width="80" height="80" alt="noImg">';
 						}
 						?>
 				<div id="user_text">
