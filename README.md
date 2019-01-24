@@ -1,4 +1,4 @@
-# 概要
+## 前提
 ローカル環境で開発した際のデータベースについてメモします。
 開発はXAMPP(7.2.12)で行いました。
 MySQL Databaseはターミナルで設定し、
@@ -8,14 +8,13 @@ MySQL Databaseはターミナルで設定し、
 ということを知るためにまず作ったもの、
 と認識していただければと思います。
 
-## データベースについて
-データベース名：hrh
-データベースユーザー名：hrhuser
-パスワード：password
-文字コード：UTF-8
+## データベース概要
+- データベース名：'hrh'
+- データベースユーザー名：'hrhuser'
+- パスワード：'password'
+- 文字コード：'UTF-8'
 
-### テーブル1
-テーブル名：users
+#### テーブル1：'users'
 ログインするユーザー情報を記録するテーブル
 
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -24,8 +23,7 @@ MySQL Databaseはターミナルで設定し、
 	password VARCHAR(255) NOT NULL,
 	profile TEXT
 
-### テーブル2
-テーブル名：post
+#### テーブル2：'post'
 掲示板に書き込まれたテキストを記録するテーブル
 
 	id INT NOT NULL,
@@ -38,12 +36,14 @@ MySQL Databaseはターミナルで設定し、
 ***
 ### 下記ターミナルのコピペになります。
 1. MySQLの起動とデータベースの作成
+
 	cd /Applications/XAMPP/bin;
 	./mysql -u root;
 	CREATE DATABASE hrh;
 	USE hrh;
 
 2. テーブルの作成
+
 	CREATE TABLE users(
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	name VARCHAR(255) NOT NULL,
@@ -62,9 +62,11 @@ MySQL Databaseはターミナルで設定し、
 	)DAFAULT CHARACTER SET=utf8;
 
 3. ユーザーの追加
+
 	GRANT ALL ON hrh.*to 'hrhuser'@'localhost' IDENTIFIED BY 'password';
 
 4. 登録したユーザーで再ログイン(チェック)
+
 	exit;
 	./mysql -u hrhuser -p;
 	password;
