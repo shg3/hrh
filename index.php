@@ -1,45 +1,31 @@
 <?php
 include 'include/checkLogin.php';
 
-// データベースhrh, テーブルposts, データベースユーザーhrhuser
-// userId INT NOT NULL,
-// name VARCHAR(255) NOT NULL,
-// id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-// title VARCHAR(255) NOT NULL,
-// maintext TEXT NOT NULL,
-// date DATETIME NOT NULL
-// テストユーザーtester,パス119
-
-// ページ数ある場合
+// ページ数が指定されていた場合
 $num=20;
 $page=0;
 if(isset($_GET['page']) && $_GET['page']>0){
 	$page=intval($_GET['page']) -1;
 }
-
 // データベース接続
-$dsn='mysql:host=localhost; dbname=hrh; charset=utf8';
-$user='hrhuser';
-$dbpass='password';
+/*
+$dsn='mysql:host=localhost; dbname=bnbnk_hrh; charset=utf8';
+$user='bnbnk';
+$dbpass='bnk_pass';
+*/
+$dsn='mysql:host=mysql1014.db.sakura.ne.jp; dbname=bnbnk_hrh; charset=utf8';
+$user='bnbnk';
+$dbpass='bnk_pass';
 
 try{
-	// PDOクエリ
 	$db=new PDO($dsn,$user,$dbpass);
 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-
-	// プリペアドステートメント
-	$stmt=$db->prepare(
-		"SELECT * FROM posts ORDER BY date DESC LIMIT :page, :num"
-	);
-
-	// パラメータ割り当て
+	// ページ数の計算のためにDBから書き込みを取り出すクエリ
+	$stmt=$db->prepare("SELECT * FROM posts ORDER BY date DESC LIMIT :page, :num");
 	$page=$num*$page;
 	$stmt->bindParam(':page', $page, PDO::PARAM_INT);
 	$stmt->bindParam(':num', $num, PDO::PARAM_INT);
-
-	//クエリ実行
 	$stmt->execute();
-
 }catch(PDOExeceptin $e){
 	echo "エラー：".$e->getMessage();
 }
@@ -59,12 +45,12 @@ try{
 		<div class="container">
 			<img src="sampleImg/logo.png" width="140" height="70" alt="logo">
 			<form action="search.php" method="POST">
-				<input type="search" name="search" placeholder="🔍">
+				<input type="search" name="search" placeholder="🔍未実装">
 			</form>
 			<ul class="clearfix">
 				<li><p><a href="index.php">Home</a></p></li>
-				<li><p><a href="#">List</a></p></li><!-- 未実装です -->
-				<li><p><a href="#">Message</a></p></li><!-- 未実装です -->
+				<li><p><a href="#">List</a></p></li><!-- 未実装 -->
+				<li><p><a href="#">Message</a></p></li><!-- 未実装 -->
 				<li><p><a href="config.php">Config</a></p></li>
 			</ul>
 	</div>
@@ -114,18 +100,11 @@ try{
 
 				// ページ数の表示
 				try{
-					// プリペアドステートメント
-					$stmt=$db->prepare(
-						'SELECT COUNT(*) FROM posts'
-					);
-
-					// クエリ実行
+					$stmt=$db->prepare('SELECT COUNT(*) FROM posts');
 					$stmt->execute();
-
 				}catch(PDOExeception $e){
 					echo "エラー：".$e->getMessage();
 				}
-
 				// postsの件数を取得
 				$comments=$stmt->fetchColumn();
 				// ページ数を計算
@@ -180,3 +159,40 @@ try{
 </div>
 </body>
 </html>
+
+<?php
+/*
+データベースbnbnk_hrh, テーブルposts, データベースユーザーbnbnk, 接続パスbnk_pass
+下記ターミナルコピペ
+
+cd /Applications/XAMPP/bin;
+./mysql -u root;
+CREATE DATABASE bnbnk_hrh;
+USE bnbnk_hrh;
+
+CREATE TABLE posts(
+userId INT NOT NULL,
+name VARCHAR(255) NOT NULL,
+id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+title VARCHAR(255) NOT NULL,
+maintext TEXT NOT NULL,
+date DATETIME NOT NULL
+)DEFAULT CHARACTER SET=utf8;
+
+// ユーザー追加
+GRANT ALL ON bnbnk_hrh.* to 'bnbnk'@'localhost' IDENTIFIED BY 'bnk_pass';
+
+// ユーザーで再ログイン
+exit;
+./mysql -u bnbnk -p;
+bnk_pass
+USE bnbnk_hrh;
+SELECT * FROM posts;
+
+// テスト用にテーブル消すとき
+DROP TABLE users;
+DROP DATABASE bnbnk_hrh;
+
+// 本番環境のホスト名：mysql1014.db.sakura.ne.jp
+*/
+ ?>

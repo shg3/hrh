@@ -1,5 +1,6 @@
 <?php
 include 'include/checkLogin.php';
+
 // セッション変数受け取り
 $password_old=$_SESSION['password_old'];
 $password_re=$_SESSION['password_re'];
@@ -8,44 +9,43 @@ $quickpass_session=119; //テスト用のquickpass「119」
 
 // 暗証番号が入力された場合
 if(isset($_POST['quickpass'])){
-	// POST変数受け取り
+	// POSTの受け取り
 	$quickpass_post=$_POST['quickpass'];
-	// クイックパス照合
+	// 暗証番号が合っていればデーターベースに接続
 	if($quickpass_post==$quickpass_session){
 		//データベース接続
-		$dsn='mysql:host=localhost; dbname=hrh; charset=utf8';
-		$user='hrhuser';
-		$password='password';
+		/*
+		$dsn='mysql:host=localhost; dbname=bnbnk_hrh; charset=utf8';
+		$user='bnbnk';
+		$dbpass='bnk_pass';
+		*/
+		$dsn='mysql:host=mysql1014.db.sakura.ne.jp; dbname=bnbnk_hrh; charset=utf8';
+		$user='bnbnk';
+		$dbpass='bnk_pass';
 
 		try{
-			//PDOクラス作成
-			$db= new PDO($dsn, $user, $password);
+			$db= new PDO($dsn, $user, $dbpass);
 			$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
-			// プリペアドステートメント作成
-			$stmt=$db->prepare(
-				'UPDATE users SET password=:password_re WHERE userId=:userId AND password=:password_old'
-			);
-			// パラメータ割り当て
+			// usersテーブルのpasswordを更新するクエリ
+			$stmt=$db->prepare('UPDATE users SET password=:password_re WHERE userId=:userId AND password=:password_old');
 			$stmt->bindParam(':password_re', sha1($password_re), PDO::PARAM_STR);
 			$stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_INT);
 			$stmt->bindParam(':password_old', sha1($password_old), PDO::PARAM_STR);
-			// クエリ実行
 			$stmt->execute();
-			//
-
 			// ログアウト
 			header('Location: logout.php');
 			exit();
-
 		}catch(PDOExeception $e){
 			echo 'エラー：'.$e->getMessage();
 		}
-	}else{
-		// 暗証番号が間違っていた場合
-		$ng_messa="もう一度暗証番号を入力してください。";
+	}else{ // 暗証番号が間違っていた場合はPOSTを破棄して再読み込み
+		unset($_POST['quickpass']);
+		header('Location: changePass_on.php');
+		exit();
 	}
-}
- ?>
+}else{ //暗証番号が入力されていない場合
+	// 末尾で閉じる
+?>
 
 <!DOCTYPE html>
 <html>
@@ -80,3 +80,7 @@ if(isset($_POST['quickpass'])){
 </div>
 </body>
 </html>
+
+<?php //ここ消すな
+ }
+ ?>

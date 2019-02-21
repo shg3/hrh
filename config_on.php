@@ -1,12 +1,5 @@
 <?php
 include 'include/checkLogin.php';
-// データベースhrh, テーブルusers, データベースユーザーhrhuser
-// userId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-// name VARCHAR(255) NOT NULL,
-// email VARCHAR(255) NOT NULL,
-// password VARCHAR(255) NOT NULL,
-// profile TEXT
-// quickpass119
 
 /* (1)サムネイルがアップされていたら縮小画像を保存
 ----------------------------------------*/
@@ -77,9 +70,14 @@ if(
 	$user_profile=$_POST['user_profile'];
 
 	// データベース接続
-	$dsn='mysql:host=localhost; dbname=hrh; charset=utf8';
-	$user='hrhuser';
-	$dbpass='password';
+	/*
+	$dsn='mysql:host=localhost; dbname=bnbnk_hrh; charset=utf8';
+	$user='bnbnk';
+	$dbpass='bnk_pass';
+	*/
+	$dsn='mysql:host=mysql1014.db.sakura.ne.jp; dbname=bnbnk_hrh; charset=utf8';
+	$user='bnbnk';
+	$dbpass='bnk_pass';
 	try{
 		// PDOクラス作成
 		$db=new PDO($dsn, $user, $dbpass);

@@ -1,39 +1,33 @@
 <?php
-// データベースhrh, テーブルusers, データベースユーザーhrhuser
-// userId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-// name VARCHAR(255) NOT NULL,
-// email VARCHAR(255) NOT NULL,
-// password VARCHAR(255) NOT NULL,
-// profile TEXT
-
 session_start();
 
-// idがあればindexへ
+// idがセットされていた場合
 if(isset($_SESSION['userId'])){
 	header('Location: index.php');
 	exit();
-}else if(isset($_POST['name']) && isset($_POST['password'])){
-	// フォーム入力された時
+}else if( // idがセットされていなかった場合で、nameとpasswordがPOSTされた場合
+	isset($_POST['name']) && isset($_POST['password'])){
 	//データベース接続
-	$dsn='mysql:host=localhost; dbname=hrh; charset=utf8';
-	$user='hrhuser';
-	$dbpass='password';
+	/*
+	$dsn='mysql:host=localhost; dbname=bnbnk_hrh; charset=utf8';
+	$user='bnbnk';
+	$dbpass='bnk_pass';
+	*/
+	$dsn='mysql:host=mysql1014.db.sakura.ne.jp; dbname=bnbnk_hrh; charset=utf8';
+	$user='bnbnk';
+	$dbpass='bnk_pass';
+
 
 	try{
-		// PDOクラス作成
 		$db=new PDO($dsn, $user, $dbpass);
 		$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-		print_r($db->errorInfo());
-		// プリペアドステートメント
+		// ページ遷移のためにDBから情報を取り出すクエリ
 		$stmt=$db->prepare('SELECT * FROM users WHERE name=:name AND password=:password');
-		// パラメータの割り当て
 		$stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
 		$stmt->bindParam(':password', sha1($_POST['password']), PDO::PARAM_STR);
-		// クエリ実行
 		$stmt->execute();
-
+		// 格納
 		if($row=$stmt->fetch()){
-			// セッションidを格納
 			$_SESSION['userId']=$row['userId'];
 		 	$_SESSION['email']=$row['email'];
 			$_SESSION['name']=$row['name'];
@@ -43,13 +37,12 @@ if(isset($_SESSION['userId'])){
 			session_regenerate_id(true);
 			header('Location: index.php');
 			exit();
-
-		}else{
-			// 1レコードも取り出せなかった場合、ユーザ名とパスワードが間違っていた場合
+		}else{ // 1レコードも取り出せなかった場合、ユーザ名とパスワードが間違っていた場合はPOSTを破棄して再読み込み
+			unset($_POST['name']);
+			unset($_POST['password']);
 			header('Location: login.php');
 			exit();
 		}
-
 	}catch(PDOExeceptin $e){
 		die('エラー：'.$e->getMessage());
 	}
@@ -86,4 +79,39 @@ if(isset($_SESSION['userId'])){
 <?php
 // ここ↓消すな
 }
+
+/*
+データベースbnbnk_hrh, テーブルusers, データベースユーザーbnbnk, 接続パスbnk_pass
+下記ターミナルコピペ
+
+cd /Applications/XAMPP/bin;
+./mysql -u root;
+CREATE DATABASE bnbnk_hrh;
+USE bnbnk_hrh;
+
+// テーブル作成
+CREATE TABLE users(
+userId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
+password VARCHAR(255) NOT NULL,
+profile TEXT
+)DEFAULT CHARACTER SET=utf8;
+
+// ユーザー追加
+GRANT ALL ON bnbnk_hrh.* to 'bnbnk'@'localhost' IDENTIFIED BY 'bnk_pass';
+
+// ユーザーで再ログイン
+exit;
+./mysql -u bnbnk -p;
+bnk_pass
+USE bnbnk_hrh;
+SELECT * FROM users;
+
+// テスト用にテーブル消すとき
+DROP TABLE users;
+DROP DATABASE bnbnk_hrh;
+
+// 本番環境のホスト名：mysql1014.db.sakura.ne.jp
+*/
 ?>

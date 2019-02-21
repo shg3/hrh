@@ -1,10 +1,4 @@
 <?php
-// データベースhrh, テーブルposts, データベースユーザーhrhuser
-// id INT NOT NULL,
-// name VARCHAR(255) KEY NOT NULL,
-// title VARCHAR(255) NOT NULL,
-// maintext text NOT NULL,
-// date DATETIME NOT NULL
 include 'include/checkLogin.php';
 
 // 変数受け取り
@@ -24,9 +18,14 @@ if(
 }
 
 // データベース接続
-$dsn='mysql:host=localhost; dbname=hrh; charset=utf8';
-$user='hrhuser';
-$dbpass='password';
+/*
+$dsn='mysql:host=localhost; dbname=bnbnk_hrh; charset=utf8';
+$user='bnbnk';
+$dbpass='bnk_pass';
+*/
+$dsn='mysql:host=mysql1014.db.sakura.ne.jp; dbname=bnbnk_hrh; charset=utf8';
+$user='bnbnk';
+$dbpass='bnk_pass';
 
 try{
 	$db=new PDO($dsn, $user, $dbpass);
