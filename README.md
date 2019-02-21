@@ -1,6 +1,7 @@
 ## 前提
 開発はXAMPP(7.2.12)で行いました。MySQLはver5.7です。
-さくらのレンタルサーバーにも置いてます(http://bnbnk.sakura.ne.jp/hrh/login.php)。
+さくらのレンタルサーバーにも置いてます。
+http://bnbnk.sakura.ne.jp/hrh/login.php
 データベースの管理はphpMyAdminです。
 
 ## データベース概要
