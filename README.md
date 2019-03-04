@@ -1,8 +1,12 @@
 ## 前提
-開発はXAMPP(7.2.12)で行いました。MySQLはver5.7です。
-さくらのレンタルサーバーにも置いてます。
-http://bnbnk.sakura.ne.jp/hrh/login.php
-データベースの管理はphpMyAdminです。
+試作したDB利用の簡易掲示板です。
+開発はXAMPP(7.2.12)、MySQLはver5.7です。
+さくらのレンタルサーバーにも置き、そちらははphpMyAdminで管理しています。
+
+## 基本機能
+ - ユーザーの追加/ログイン/ログアウト機能
+ - 掲示板への書き込み機能/自分の書き込みの削除機能
+ - ユーザー名/サムネイル/プロフィール/パスワードの変更機能
 
 ## データベース概要
 - データベース名：`bnbnk_hrh`
@@ -46,6 +50,7 @@ http://bnbnk.sakura.ne.jp/hrh/login.php
 5. サーバー関係
 	1. 他にも何件かWebアプリケーションを作って慣れていきたいところ。
 	2. ワケ分からないワードが多いのでとにかく慣れ。
+	3. テーブルの結合。これは早くやりたい。リレーションがある。
 ***
 ## 下記はローカル環境下で制作していた時のターミナルのコピペ
 ###### MySQLの起動とデータベースの作成
@@ -73,7 +78,7 @@ http://bnbnk.sakura.ne.jp/hrh/login.php
 	USE bnbnk_hrh;
 	SELECT * FROM users;
 
-###### その他メモ書き
+###### その他メモ書き(学習用)
 
 	DROP TABLE users;
 	DROP DATABASE bnbnk_hrh;
