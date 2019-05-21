@@ -9,14 +9,16 @@ if($userId=='' && $id==''){
 }
 
 // データベース接続
-/*
+
 $dsn='mysql:host=localhost; dbname=bnbnk_hrh; charset=utf8';
 $user='bnbnk';
 $dbpass='bnk_pass';
-*/
+
+/*
 $dsn='mysql:host=mysql1014.db.sakura.ne.jp; dbname=bnbnk_hrh; charset=utf8';
 $user='bnbnk';
 $dbpass='bnk_pass';
+*/
 
 try{
 	// PDOクエリ

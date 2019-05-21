@@ -14,14 +14,17 @@ if(isset($_POST['quickpass'])){
 	// 暗証番号が合っていればデーターベースに接続
 	if($quickpass_post==$quickpass_session){
 		//データベース接続
-		/*
+		
 		$dsn='mysql:host=localhost; dbname=bnbnk_hrh; charset=utf8';
 		$user='bnbnk';
 		$dbpass='bnk_pass';
-		*/
+
+
+		/*
 		$dsn='mysql:host=mysql1014.db.sakura.ne.jp; dbname=bnbnk_hrh; charset=utf8';
 		$user='bnbnk';
 		$dbpass='bnk_pass';
+		*/
 
 		try{
 			$db= new PDO($dsn, $user, $dbpass);

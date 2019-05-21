@@ -8,14 +8,16 @@ if(isset($_SESSION['userId'])){
 }else if( // idがセットされていなかった場合で、nameとpasswordがPOSTされた場合
 	isset($_POST['name']) && isset($_POST['password'])){
 	//データベース接続
-	/*
+
 	$dsn='mysql:host=localhost; dbname=bnbnk_hrh; charset=utf8';
 	$user='bnbnk';
 	$dbpass='bnk_pass';
-	*/
+
+	/*
 	$dsn='mysql:host=mysql1014.db.sakura.ne.jp; dbname=bnbnk_hrh; charset=utf8';
 	$user='bnbnk';
 	$dbpass='bnk_pass';
+	*/
 
 
 	try{
@@ -113,5 +115,21 @@ DROP TABLE users;
 DROP DATABASE bnbnk_hrh;
 
 // 本番環境のホスト名：mysql1014.db.sakura.ne.jp
+
+// テーブルの結合
+SELECT
+	posts.userId,
+	posts.name,
+	posts.id,
+	posts.title,
+	posts.maintext,
+	posts.date,
+	users.email,
+	users.password,
+	users.profile
+FROM
+	users RIGHT OUTER JOIN posts
+ON
+	posts.userId = users.userId;
 */
 ?>
